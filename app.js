@@ -270,7 +270,10 @@ function buzzIn() {
 }
 
 function cleanString(str) {
-    return str.toLowerCase().replace(/[^\w\s]/g, '').trim();
+    let cleaned = str.toLowerCase().replace(/[^\w\s]/g, '').trim();
+    // Remove leading articles
+    cleaned = cleaned.replace(/^(a|an|the)\s+/, '');
+    return cleaned;
 }
 
 function checkAnswer() {
