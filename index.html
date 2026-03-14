@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAC Quiz Bowl Trainer</title>
+    <meta name="description" content="Train for the International Academic Competitions with simulated Quiz Bowl matches.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Setup Screen -->
+        <div id="setup-screen" class="screen active">
+            <header>
+                <div class="logo">
+                    <span class="logo-text">IAC</span> TRAINER
+                </div>
+                <p class="subtitle">Master the Academic Bowl</p>
+            </header>
+            
+            <div class="setup-controls">
+                <div class="control-group">
+                    <label for="level-select">Select Level</label>
+                    <div class="options-grid" id="level-options">
+                        <button class="option-btn active" data-value="Varsity">Varsity</button>
+                        <button class="option-btn" data-value="JV">Jr. Varsity</button>
+                        <button class="option-btn" data-value="Middle">Middle School</button>
+                        <button class="option-btn" data-value="Elementary">Elementary</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="topic-select">Select Topic</label>
+                    <div class="options-grid" id="topic-options">
+                        <button class="option-btn active" data-value="History">History</button>
+                        <button class="option-btn" data-value="Science">Science</button>
+                        <button class="option-btn" data-value="Geography">Geography</button>
+                        <button class="option-btn" data-value="Academics">Academics</button>
+                        <button class="option-btn" data-value="All">All Topics</button>
+                    </div>
+                </div>
+
+                <button id="start-btn" class="primary-btn pulse-anim">
+                    START MATCH <kbd>ENTER</kbd>
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="game-header">
+                <div class="match-info">
+                    <span id="current-level" class="badge">Varsity</span>
+                    <span id="current-topic" class="badge badge-outline">History</span>
+                </div>
+                <div class="score-display">
+                    <span class="score-label">SCORE</span>
+                    <span id="score-value">0</span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <div class="question-meta">
+                    Question <span id="q-current">1</span> / <span id="q-total">10</span>
+                </div>
+                <div id="question-text" class="question-text">
+                    <!-- Text revealed word by word here -->
+                </div>
+                
+                <div class="buzz-controls hidden" id="buzz-controls">
+                    <div class="input-wrapper">
+                        <input type="text" id="answer-input" placeholder="Type your answer..." autocomplete="off">
+                        <button id="submit-btn" class="submit-btn">SUBMIT</button>
+                    </div>
+                    <div class="timer-bar">
+                        <div class="timer-fill" id="answer-timer"></div>
+                    </div>
+                </div>
+
+                <button id="buzz-btn" class="buzz-btn">
+                    BUZZ IN <kbd>SPACE</kbd>
+                </button>
+
+                <div id="feedback-overlay" class="feedback-overlay hidden">
+                    <h2 id="feedback-msg">CORRECT!</h2>
+                    <p id="feedback-points">+30 POINTS</p>
+                    <p id="correct-answer-reveal" class="hidden">Answer: <span id="actual-answer"></span></p>
+                    <button id="next-q-btn" class="secondary-btn mt-4">NEXT QUESTION <kbd>ENTER</kbd></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen hidden">
+            <h1 class="results-title">MATCH COMPLETE</h1>
+            <div class="results-stats">
+                <div class="stat-box">
+                    <span class="stat-label">FINAL SCORE</span>
+                    <span id="final-score" class="stat-value highlight">0</span>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-box small">
+                        <span class="stat-label">Correct</span>
+                        <span id="correct-count" class="stat-value correct">0</span>
+                    </div>
+                    <div class="stat-box small">
+                        <span class="stat-label">Incorrect</span>
+                        <span id="incorrect-count" class="stat-value incorrect">0</span>
+                    </div>
+                    <div class="stat-box small">
+                        <span class="stat-label">Passed</span>
+                        <span id="passed-count" class="stat-value neutral">0</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Powers (20/30 pts)</span>
+                    <span id="powers-count" class="stat-value">0</span>
+                </div>
+            </div>
+            <button id="play-again-btn" class="primary-btn">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
